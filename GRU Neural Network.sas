@@ -12,7 +12,6 @@ Proc print data = Public.MOVIE_EMBED (obs=10);
 run;
 title;
 
-
 /*b.Use the FREQ procedure to view the number of movies that earned a profit */
 Proc Freq data=Public.MOVIE_CLEAN;
 Tables Profit/ nocum;
@@ -107,8 +106,7 @@ quit;
 
 /* g. Use the dlTrain action to train the GRU model using the Profit variable as the target and the Overview variable as the input. 
       Train the model using the Adam optimization algorithm and a learning rate of 0.05. Use mini batch sizes of 50 and train for 20 epochs. 
-      Be sure to save the weights to score the test data after the model is built. Comment on the training output. 
-      Note: Use all other Optimization parameters as in Demo DLUS03D01 RNN model.					*/
+      Save the weights to score the test data after the model is built */
 
 proc cas;
 	deepLearn.dlTrain /
@@ -129,7 +127,7 @@ proc cas;
 quit;
 
 
-/*h.Score the test data and view the misclassification error. Comment	*/
+/*h.Score the test data and view the misclassification error */
 
 proc cas;
 	deepLearn.dlScore / 
@@ -144,7 +142,7 @@ quit;
 
 
 /*i.Regularize the previous GRU model by building the model again but include a dropout of 0.40 in each GRU hidden layer. 
-    Train the new model with the same arguments for the dlTrain action and view the changes in the optimization history. Comment on what the differences are from step (g)*/
+    Train the new model with the same arguments for the dlTrain action and view the changes in the optimization history*/
 
 /*change Step (f) & (g) to the below code */
 
@@ -204,7 +202,7 @@ proc cas;
 quit;
 
 
-/*j.Score the test data using the GRU model with regularization. Comment */
+/*j.Score the test data using the GRU model with regularization */
 
 proc cas;
 	deepLearn.dlScore / 
